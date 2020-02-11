@@ -1,5 +1,7 @@
 # Configure the mesocentre
 
+[Mesocentre tutorials](https://mesocentre.univ-amu.fr/les-tutoriaux/)
+
 ## Login
 
 `ssh ecombrisson@login.mesocentre.univ-amu.fr`
@@ -24,6 +26,9 @@ module load python3/3.6.3
 
 ## Manage your data
 
+* [Disk usage per user](https://mesocentre.univ-amu.fr/espaces_disquesn/)
+* [Data transfer](https://mesocentre.univ-amu.fr/sauvegarde-donnees/)
+
 ### Upload data stored locally
 
 `rsync -rv /path_to_my_files/ ecombrisson@login.mesocentre.univ-amu.fr:/home/ecombrisson/data/`
@@ -42,32 +47,36 @@ module load python3/3.6.3
 
 ### Submit a script
 
-Start by creating an executable submission file :
+**Start by creating an executable submission file**
 1. `touch submit.sh`
 2. `chmod +x submit.sh`
 
-Past the following lines inside it :
-```bash
-#!/bin/bash
-#SBATCH -t 01:00:00
-#SBATCH -J example_scipt
-#SBATCH -o ./%N.%j.%a.out
-#SBATCH -e ./%N.%j.%a.err
-#SBATCH --mail-type=BEGIN,END
-#SBATCH --mail-user=e.combrisson@gmail.com
-#SBATCH -A b128
-#SBATCH -p skylake
-#SBATCH -N 1
-#SBATCH --ntasks-per-node=32
-#SBATCH --mem=100G
+**Past the following lines inside it : [submit.sh](https://github.com/brainets/ressources/blob/master/mesocentre/script/submit.sh)**
+* `#SBATCH -t 01:00:00` : ask fo 1 hour of computations
+* `#SBATCH -J example_scipt` : the purpose of your script (compute_power, compute_mi etc.)
+* `#SBATCH --mail-user=e.combrisson@gmail.com` : your email adress to be notified when your script start / finish
+* `#SBATCH -A b128` : Andrea's project number
+* `#SBATCH -p skylake` : the material to use
+* `#SBATCH -N 1` : the number of nodes
+* `#SBATCH --ntasks-per-node=32` : number of cores per node
+* `#SBATCH --mem=100G` : RAM requirements
 
-# Load modules :
-module load userspace/all
-module load python3/3.6.3
+**Submit your script**
 
-# Activate python env :
-source /home/ecombrisson/py3/bin/activate
+`sbatch submit.sh`
 
-# Run your python file (optimization mode)
-python -O /path_to_my_file/script.py
-```
+### Checkout that your script is running
+
+`squeue -u ecombrisson`
+
+### Checkout the core usage (per node)
+
+When submitting your jobs you should get two files (skylake032.err and skylake032.out).
+* `skylake032` is the node number of the skylake partition
+* The \*.out contains print outputs and the \*.err contains "errors" (or logging)
+
+While your script is running, you should be able to connect to the node :
+
+`ssh skylake032`
+
+From this node you can run `htop` to see the usage of each core
