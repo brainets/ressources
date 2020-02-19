@@ -52,7 +52,7 @@ This step is required for cleaning the MRI data and reducing noise
 ## Step 5. Run Freesurfer
 
 ### Setting fast access to freesurfer
-* Create a new file in your own folder (`/surname.n`) and rename it as [freesurfer_pipeline.sh](https://github.com/brainets/ressources/segmentation/freesurfer_pipeline.sh)
+* Create a new file in your own folder (`/surname.n`) and rename it as [freesurfer_pipeline.sh](https://github.com/brainets/ressources/blob/master/segmentation/freesurfer_pipeline.sh)
 * Open it with gedit, then copy and paste the lines that you can find at the and of this pipeline, just like they are
 * Change for your task name (`TASK`) and check that this is where the data are located (`TEAM_DIR`)
 * Right click on this file: `Properties-> Permission-> Execute` checkmark on `Allow executing file as program`. Alternatively, from a linux terminal you can enter `chmod +x freesurfer_pipeline.sh`
