@@ -1,8 +1,5 @@
 # Localize sEEG contacts
 
-![Stefano](../_images/bg_stefano.png)
-
-
 **Warning :** the Fressurfer segmentation have to be launched **before** localizing your sEEG contacts. Checkout the [segmentation guide](https://github.com/brainets/ressources/blob/master/segmentation/freesurfer_pipeline.sh)
 
 ## Step 1 : Align the post and pre implantation images
