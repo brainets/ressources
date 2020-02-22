@@ -4,7 +4,11 @@
 
 ## Login
 
-`ssh ecombrisson@login.mesocentre.univ-amu.fr`
+**First name :** Roger
+**Last name :** Lebogosse
+**Mesocentre login :** rlebogosse
+
+`ssh rlebogosse@login.mesocentre.univ-amu.fr`
 
 You should configure your ssh RSA keys to make your connection easier !
 
@@ -31,11 +35,11 @@ module load python3/3.6.3
 
 ### Upload data stored locally
 
-`rsync -rv /path_to_my_files/ ecombrisson@login.mesocentre.univ-amu.fr:/home/ecombrisson/data/`
+`rsync -rv /path_to_my_files/ rlebogosse@login.mesocentre.univ-amu.fr:/home/rlebogosse/data/`
 
 ### Mount mesocentre disk locally
 
-`sshfs ecombrisson@login.mesocentre.univ-amu.fr:/path_to_mount/ /local_path/`
+`sshfs rlebogosse@login.mesocentre.univ-amu.fr:/path_to_mount/ /local_path/`
 
 ## Submit your job
 
@@ -67,7 +71,7 @@ module load python3/3.6.3
 
 ### Checkout that your script is running
 
-`squeue -u ecombrisson`
+`squeue -u rlebogosse`
 
 ### Checkout the core usage (per node)
 
