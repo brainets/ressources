@@ -4,9 +4,9 @@
 
 ## Login
 
-**First name :** Roger
-**Last name :** Lebogosse
-**Mesocentre login :** rlebogosse
+* **First name :** Roger
+* **Last name :** Lebogosse
+* **Mesocentre login :** rlebogosse
 
 `ssh rlebogosse@login.mesocentre.univ-amu.fr`
 
