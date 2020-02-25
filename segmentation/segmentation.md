@@ -86,15 +86,21 @@ This step is required for cleaning the MRI data and reducing noise
 * In BrainVISA go to: `Cortical surface-> anatomy-> HIP HOP cortical parametrization`
     * Choose subject from `db_brainvisa` and `Run`
     * **TROUBLESHOOTING :** How to correct manually the cingular pole if MarsAtlas is not correct:
-        * Open cingular pole file on Anatomist by clicking on the green icon in HIPHOP
-        * Open the PaintSurf toolbox: the icon is the color palette
-        * Get the color from the cortex using the syringe
-        * Draw the contour using the free (unconstrained) or sulci based contour: the icon is the brain with a colored line
-        * Select all points that are outside the correct cingular mask using the magic stick
-        * Click on the green tick to change color texture of the selected surface
-        * Save the file once happy by rewriting old file name \*\_pole_cingular.gii
+        * From the `HIP HOP cortical parametrization` section, expand the `Hip-hop Hemispheric Parametrization` section
+            1. Go to the first `Cingular Pole Projection` then on the right panel click on the eye closed to `pole`. This should run Anatomist
+            2. Rotate the brain using the mouse wheel
+            3. Open the PaintSurf toolbox: the icon is the color palette
+            4. Select the syringe (Texture value selection). Click on a non-black zone. Texture value should be `0`
+            5. Select the magic brush and click inside the black section. You should have a collection a points inside the cingular pole
+            6. Click on the green tick. This is going to set all of the black values to `0`
+            7. Click on `undo` and select a black pixel. Texture value should now be `1` and click `redo`
+            8. Draw the cingular pole contour using the free (unconstrained) or sulci based contour: the icon is the brain with a colored line
+            9. Click on the magic brush inside the cingular pole section
+            10. Click on the green tick to set all the values to `1`
+            11. Save the file once happy by rewriting old file name \*\_pole_cingular.gii (left hemisphere)
+        * Repeat this for the right cingular pole (if needed)
         * Use `Cortical Surface -> Anatomy -> Tools -> Cingular Pole From Manual` to correctly transform the texture. Select the subject and `Run`
-        * Rerun HIPHOP without the first two steps
+        * Rerun HIPHOP but unchecked the two `Cingular Pole Projection`
 * In BrainVISA go to: `Cortical surface-> low-level-> 2D parcellation to 3D parcellation`
     * Choose the `db_brainvisa`, the subject and then, on the right, the `left hemisphere marsAtlas parcellation texture`
 * In BrainVISA go to: `Cortical surface -> anatomy -> tools -> Subcortical From Freesurfer to MarsAtlas Parcellation`

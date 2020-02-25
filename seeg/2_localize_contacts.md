@@ -1,6 +1,25 @@
 # Localize sEEG contacts
 
-**Warning :** the Fressurfer segmentation have to be launched **before** localizing your sEEG contacts. Checkout the [segmentation guide](https://github.com/brainets/ressources/blob/master/segmentation/segmentation.md)
+## Prerequisite before starting
+
+### Freesurfer segmentation
+
+The Fressurfer segmentation have to be launched **before** localizing your sEEG contacts. Checkout the [segmentation guide](https://github.com/brainets/ressources/blob/master/segmentation/segmentation.md)
+
+### Get the number of contacts per electrodes in the data (optional)
+
+In the seegpy python toolbox, there's a function called `seegpy.contacts.analyse_channels_in_trc` that can be used to read the channel names such as the number of contactcs in your TRC file. This can then be convenient to get the number of contacts that are required per electrodes.
+
+```python
+from seegpy.contacts import analyse_channels_in_trc
+
+trc_path = '/path/my_file.TRC'
+report_path = '/path_for_saving/channel_report.txt'
+
+analyse_channels_in_trc(trc_path, print_report=report_path)
+```
+
+All of the informations about the contacts are going to be written inside a text file.
 
 ## Step 1 : Align the post and pre implantation images
 
@@ -39,18 +58,6 @@
 ![contrast](_images/contrast.png)
 
 ## Step 2 : define entry point and tip of the electrode
-
-### Get the number of contacts per electrodes in the data (optional)
-
-In the seegpy python toolbox, there's a function called `seegpy.contacts.read_channels_in_trc` that can be used to read the channel names such as the number of contactcs in your TRC file. This can then be convenient to get the number of contacts that are required per electrodes.
-
-```python
-from seegpy.contacts import read_channels_in_trc
-
-trc_path = '/path/my_file.TRC'
-
-read_channels_in_trc(trc_path, report=True)
-```
 
 ### Define your markups for the entry point and tip of each electrode
 
