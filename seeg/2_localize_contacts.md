@@ -23,7 +23,9 @@ All of the informations about the contacts are going to be written inside a text
 
 ## Step 1 : Align the post and pre implantation images
 
-### Load the post-implantation and pre-implantation Fresurfer MRI
+### Coregistration using Slicer
+
+#### Load the post-implantation and pre-implantation Fresurfer MRI
 
 * Open Slicer
 * Go to `File/Add data/Choose File(s) to add` and pick your MRI pre and post implantation (or CT). **For the MRI pre, choose the MRI processed by Freesurfer (i.e `subject_folder/mri/T1.mgz`)**. Press `show options` and in the options of you file you should be able to rename your post `POST` and the T1.mgz as `PRE`
@@ -31,7 +33,7 @@ All of the informations about the contacts are going to be written inside a text
 
 ![blending](_images/blending.png)
 
-### Align the post on the pre
+#### Align the post on the pre
 
 * The post and pre are misaligned so we are going to apply a transformation to the post to bring it in the pre space (Freesurfer scanner based). To do that :
     * In the modules, search for `Automated Expert Registration`
@@ -46,6 +48,36 @@ All of the informations about the contacts are going to be written inside a text
 * Once compute, open the `Data` module then go to `Transform Hierarchy` and drag and drop the `POST` file on the `tr_post_to_pre_fs_scanner`. The transformation is applied to the MRI-post and both pre and post should be aligned
 
 ![align](_images/align.png)
+
+### Using SPM
+
+#### mgz to nii
+
+If you need to convert the `T1.mgz` into `nii`, use the freesurfer function: `mri_convert T1.mgz T1.nii`
+
+#### Display pre / post side-by-syde
+
+- Open matlab
+- run `spm` inside it
+- Press `check reg`
+
+#### Change origin
+
+If you need to change the origin of the POST image (e.g like the CT) :
+- Open `spm`
+- Click on `display`
+- Put the cross in the center of the brain
+- Under the `Crosshair` section you should see `m` with number (e.g `9.8 -14.7 -26.5`)
+- Copy past the opposite of each number in the `right`, `forward` and `up` (`right -9.8`, `forward 14.7` and `up 26.5`)
+- Finally set `m 0 0 0`
+- Export the image by clicking on `reorient image`
+
+#### SPM Coregistration
+
+- Click on `Coregister: estimate and reslice`
+- Select the reference image (`PRE`) and source image (`POST`)
+- Click on the green top arrow to run the coregistration
+- Once finished, you should have a `rPOST.nii` file corresponding to the `POST` registered volume
 
 ### Improve contrast of the post image
 
