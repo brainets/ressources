@@ -12,6 +12,34 @@
 
 You should configure your ssh RSA keys to make your connection easier !
 
+## Manage your conda environment
+
+Checkout the official conda documentation for [managing environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+
+### Export an conda environment
+
+**Official reference :** [Exporting the environment.yml file](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-the-environment-yml-file). First, start by activating it :
+
+```
+conda activate myenv
+```
+
+Then export it :
+
+```
+conda env export > environment.yml
+```
+
+### Install a conda environment from a yml file
+
+**Official reference :** [Creating an environment from an environment.yml file](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file). 
+
+Launch the following line to create an environment based on a yml environment file :
+
+```
+conda env create -f environment.yml
+```
+
 ## Create your Python environment
 
 ### Load Python modules
