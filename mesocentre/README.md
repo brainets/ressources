@@ -27,7 +27,7 @@ conda activate myenv
 Then export it :
 
 ```
-conda env export > environment.yml
+conda env export --name myenv > environment.yml
 ```
 
 ### Install a conda environment from a yml file
