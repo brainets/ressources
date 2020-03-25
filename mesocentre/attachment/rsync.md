@@ -25,7 +25,7 @@ After connecting to the mesocentre, he will **start an interactive session** and
 
         rsync -av babbe.o@frioul.int.univ-amu.fr:/hpc/equipe/babbe.o/data/ /home/obabbe/data
         
-> N.B.: pay attention to the slashes at the end of the source/destination directory. 
+> **N.B.**: pay attention to the slashes at the end of the source/destination directory. 
 > To write '../data/' means 'what is in the folder data', while writing '../data' means 'the folder data itself'.
 > Thus in the previous command line we are saying to synchronize the content of '../data' from the source, 
 with the content of '../data' in the destination. 
