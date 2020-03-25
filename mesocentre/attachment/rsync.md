@@ -81,3 +81,5 @@ A third option is to make a txt file that contains just the one line 'file_1', a
 
     rsync -avm --progress --stats --exclude-from='exclusion_file.txt' ../source/data/ ../destination/data
     
+
+[Back to main page](https://github.com/brainets/ressources/blob/master/mesocentre/README.md)
