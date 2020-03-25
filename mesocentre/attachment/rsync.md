@@ -50,3 +50,34 @@ Executing a rsync -avn command will show you which file will be synchronized and
 without actually transferring anything.
 
 ### Include/exclude options
+
+A more efficient way to transfer just the file you're interested in, is to use the --include and --exclude options.
+
+* --include='fname': normally all files are included when you use rsync, the include option is used if you're
+excluding a folder but you want to include some files in it
+* --exclude='fname': this option is used if you want to exclude some file or folder from the synchronization
+* --exclude-from='exclusion_file.txt': this option is really helpful if you have a list of file to exclude. 
+This option allows you to write a list of file to exclude in a txt file and to use it to sync files.
+
+Imagine the scenario in which there is a main folder data, inside thiss folder there's two subfolders called 
+'folder_1' and 'folder_2', that contains rispectively the files 'file_1' and 'file_2'.
+
+If you want to synchronize file_2 but not file_1, one way to do it would be to write:
+
+    rsync -avm --progress --stats --exclude='file_1' ../source/data/ ../destination/data
+    
+In this case you're telling rsync to sync everything but 'file_1'
+    
+Otherwise you can write:
+
+    rsync -avm --progress --stats --include='*/' --include='file_2' --exclude='*' ../source/data/ ../destination/data
+    
+In this case you're telling rsync to exclude everything but 'file_2'. The option --include='*/' is needed to include
+the passage into the subfolders. 
+
+> **N.B.**: the option --exclude='*' should be used after all the inclusions are declared
+
+A third option is to make a txt file that contains just the one line 'file_1', and then write:
+
+    rsync -avm --progress --stats --exclude-from='exclusion_file.txt' ../source/data/ ../destination/data
+    
