@@ -27,7 +27,7 @@ conda activate myenv
 Then export it :
 
 ```
-conda env export > environment.yml
+conda env export --name myenv > environment.yml
 ```
 
 ### Install a conda environment from a yml file
@@ -94,7 +94,7 @@ For a more detailed documentation, see [rsync.md](https://github.com/brainets/re
 
 30 minutes of interactive session (1 node with 32 cores) :
 
-`srun -p skylake --time=00:30:0 -N 1 --ntasks-per-node=32 --pty bash -i`
+`srun -p skylake -A b128 --time=00:30:0 -N 1 --ntasks-per-node=32 --pty bash -i`
 
 ### Submit a script
 
