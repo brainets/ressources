@@ -16,7 +16,7 @@ You should configure your ssh RSA keys to make your connection easier !
 
 Checkout the official conda documentation for [managing environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 
-### Export an conda environment
+### Export a conda environment
 
 **Official reference :** [Exporting the environment.yml file](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-the-environment-yml-file). First, start by activating it :
 
@@ -27,7 +27,7 @@ conda activate myenv
 Then export it :
 
 ```
-conda env export > environment.yml
+conda env export --name myenv > environment.yml
 ```
 
 ### Install a conda environment from a yml file
@@ -39,6 +39,23 @@ Launch the following line to create an environment based on a yml environment fi
 ```
 conda env create -f environment.yml
 ```
+
+### Export a conda environment - second way
+
+If somehow the previous method doesn't work (e.g. you don't have Anaconda installed on your PC), 
+you can also follow this guide.
+
+Activate your environment trough the command line:
+
+    source activate myenv
+
+Once you're in your environment, you can obtain the list of all your installed packages by executing
+
+    pip freeze > requirements.txt
+    
+Then install your favourite python environment, activate it, and run the command
+
+    pip install -r requirements.txt
 
 ## Create your Python environment
 
@@ -65,6 +82,8 @@ module load python3/3.6.3
 
 `rsync -rv /path_to_my_files/ rlebogosse@login.mesocentre.univ-amu.fr:/home/rlebogosse/data/`
 
+For a more detailed documentation, see [rsync.md](https://github.com/brainets/ressources/blob/master/mesocentre/attachment/rsync.md)
+
 ### Mount mesocentre disk locally
 
 `sshfs rlebogosse@login.mesocentre.univ-amu.fr:/path_to_mount/ /local_path/`
@@ -75,7 +94,7 @@ module load python3/3.6.3
 
 30 minutes of interactive session (1 node with 32 cores) :
 
-`srun -p skylake --time=00:30:0 -N 1 --ntasks-per-node=32 --pty bash -i`
+`srun -p skylake -A b128 --time=00:30:0 -N 1 --ntasks-per-node=32 --pty bash -i`
 
 ### Submit a script
 
@@ -86,7 +105,7 @@ module load python3/3.6.3
 **Past the following lines inside it : [submit.sh](https://github.com/brainets/ressources/blob/master/mesocentre/script/submit.sh)**
 * `#SBATCH -t 01:00:00` : ask fo 1 hour of computations
 * `#SBATCH -J example_scipt` : the purpose of your script (compute_power, compute_mi etc.)
-* `#SBATCH --mail-user=e.combrisson@gmail.com` : your email adress to be notified when your script start / finish
+* `#SBATCH --mail-user=s.combrissone@gmail.com` : your email adress to be notified when your script start / finish
 * `#SBATCH -A b128` : Andrea's project number
 * `#SBATCH -p skylake` : the material to use
 * `#SBATCH -N 1` : the number of nodes
