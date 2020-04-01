@@ -82,11 +82,7 @@ module load python3/3.6.3
 
 `rsync -rv /path_to_my_files/ rlebogosse@login.mesocentre.univ-amu.fr:/home/rlebogosse/data/`
 
-For a more detailed documentation, see [rsync.md](https://github.com/brainets/ressources/blob/master/server/mesocentre/attachment/rsync.md)
-
-### Mount mesocentre disk locally
-
-`sshfs rlebogosse@login.mesocentre.univ-amu.fr:/path_to_mount/ /local_path/`
+For transferring your data, see the section [Transferring data](https://github.com/brainets/ressources/blob/master/server)
 
 ## Submit your job
 
