@@ -82,7 +82,7 @@ module load python3/3.6.3
 
 `rsync -rv /path_to_my_files/ rlebogosse@login.mesocentre.univ-amu.fr:/home/rlebogosse/data/`
 
-For a more detailed documentation, see [rsync.md](https://github.com/brainets/ressources/blob/master/mesocentre/attachment/rsync.md)
+For a more detailed documentation, see [rsync.md](https://github.com/brainets/ressources/blob/master/server/mesocentre/attachment/rsync.md)
 
 ### Mount mesocentre disk locally
 
@@ -102,7 +102,7 @@ For a more detailed documentation, see [rsync.md](https://github.com/brainets/re
 1. `touch submit.sh`
 2. `chmod +x submit.sh`
 
-**Past the following lines inside it : [submit.sh](https://github.com/brainets/ressources/blob/master/mesocentre/script/submit.sh)**
+**Past the following lines inside it : [submit.sh](https://github.com/brainets/ressources/blob/master/server/mesocentre/script/submit.sh)**
 * `#SBATCH -t 01:00:00` : ask fo 1 hour of computations
 * `#SBATCH -J example_scipt` : the purpose of your script (compute_power, compute_mi etc.)
 * `#SBATCH --mail-user=s.combrissone@gmail.com` : your email adress to be notified when your script start / finish

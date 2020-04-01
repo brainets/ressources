@@ -1,4 +1,4 @@
-# Transfer data from/to the mesocentre via rsync
+# Transfer data using rsync
 
 Rsync is a tool that allows you to synchronize your data between a source and a destination folder.
 
