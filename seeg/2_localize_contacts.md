@@ -23,6 +23,46 @@ All of the informations about the contacts are going to be written inside a text
 
 ## Step 1 : Align the post and pre implantation images
 
+### Using SPM
+
+#### mgz to nii
+
+If you need to convert the `T1.mgz` into `nii`, use the freesurfer function: `mri_convert T1.mgz T1.nii`
+
+#### Display pre / post side-by-syde
+
+- Open matlab
+- run `spm` inside it
+- Press `check reg`
+
+#### Change origin
+
+If you need to change the origin of the POST image (e.g like the CT) :
+- Open `spm`
+- Click on `display`
+- Put the cross in the center of the brain
+- Under the `Crosshair` section you should see `m` with number (e.g `9.8 -14.7 -26.5`)
+- Copy past the opposite of each number in the `right`, `forward` and `up` (`right -9.8`, `forward 14.7` and `up 26.5`)
+- Set `m 0 0 0`
+- Click  on `Set origin`
+- Export the image by clicking on `reorient image`
+
+#### SPM Coregistration
+
+> **Warning :** the coregistration modify the transformation inplace. You might want to do a backup of your file before
+
+- Click on `Coregister: estimate`
+- Select the reference image (`PRE`) and source image (`POST`)
+- Click on the green top arrow to run the coregistration
+
+Here, we don't use the `Coregister: estimate and reslice` because it decreases the resolution of the output volume. However, this operation also modify the transformation inplace which is not the case for the `Coregister: estimate`. To do it, once the estimation finished, run the following lines :
+
+```matlab
+V = spm_vol('CT.nii');
+V.private.mat0=V.mat;
+V = spm_create_vol(V);
+```
+
 ### Coregistration using Slicer
 
 #### Load the post-implantation and pre-implantation Fresurfer MRI
@@ -48,36 +88,6 @@ All of the informations about the contacts are going to be written inside a text
 * Once compute, open the `Data` module then go to `Transform Hierarchy` and drag and drop the `POST` file on the `tr_post_to_pre_fs_scanner`. The transformation is applied to the MRI-post and both pre and post should be aligned
 
 ![align](_images/align.png)
-
-### Using SPM
-
-#### mgz to nii
-
-If you need to convert the `T1.mgz` into `nii`, use the freesurfer function: `mri_convert T1.mgz T1.nii`
-
-#### Display pre / post side-by-syde
-
-- Open matlab
-- run `spm` inside it
-- Press `check reg`
-
-#### Change origin
-
-If you need to change the origin of the POST image (e.g like the CT) :
-- Open `spm`
-- Click on `display`
-- Put the cross in the center of the brain
-- Under the `Crosshair` section you should see `m` with number (e.g `9.8 -14.7 -26.5`)
-- Copy past the opposite of each number in the `right`, `forward` and `up` (`right -9.8`, `forward 14.7` and `up 26.5`)
-- Finally set `m 0 0 0`
-- Export the image by clicking on `reorient image`
-
-#### SPM Coregistration
-
-- Click on `Coregister: estimate and reslice`
-- Select the reference image (`PRE`) and source image (`POST`)
-- Click on the green top arrow to run the coregistration
-- Once finished, you should have a `rPOST.nii` file corresponding to the `POST` registered volume
 
 ### Improve contrast of the post image
 
