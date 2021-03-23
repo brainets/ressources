@@ -7,7 +7,7 @@ To mount a disk from the Mesocentre:
 * **Mount the disk :** `sshfs rlebogosse@login.mesocentre.univ-amu.fr:/path_to_mount/ /local_path/`
 * **Unmount the disk :** `fusermount -zu /local_path/`
 
-To mount a disk on Frioul (e.g., /hpc:
+To mount a disk on Frioul:
 
 * **Mount the disk :** `sshfs brovelli.a@frioul.int.univ-amu.fr:/path_to_mount/ /local_path/`
 * **Unmount the disk :** `fusermount -zu /local_path/`
